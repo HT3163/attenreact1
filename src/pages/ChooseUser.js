@@ -134,7 +134,7 @@ const ChooseUser = ({ visitor }) => {
 
           <Grid item xs={12} sm={6} md={4}>
             <StyledPaper elevation={3}>
-              <a href='https://attenreact1.vercel.app/Teacherlogin' id='teacher'><Box mb={2}>
+              <a href='/Teacherlogin' id='teacher'><Box mb={2}>
                 <Group fontSize="large" />
               </Box>
                 <StyledTypography>
