@@ -40,12 +40,12 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
     const obj = {}
 
     const handleStatusChange = (studentId, newStatus) => {
-        console.log('me clicked')
+        console.log('me clicked',obj)
         obj[studentId?.id] = newStatus
     };
 
     const uploadAttendance = () => {
-
+        console.log(obj)
         try{
             for (const key in obj) {
                 console.log(`Key: ${key}, Value: ${obj[key]}`);
