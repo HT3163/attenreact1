@@ -14,6 +14,7 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
+    const [obj1,setObj1] = useState({})
 
     
     const handleChange = (event) => {
@@ -36,15 +37,18 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
     };
     const date = getCurrentDate()
     
-
     const obj = {}
 
     const handleStatusChange = (studentId, newStatus) => {
         console.log('me clicked',obj)
         obj[studentId?.id] = newStatus
+        setObj1(obj)
+        console.log(obj1)
     };
 
     const uploadAttendance = () => {
+        // setObj1(obj)
+        console.log("he",obj1)
         console.log(obj)
         try{
             for (const key in obj) {
