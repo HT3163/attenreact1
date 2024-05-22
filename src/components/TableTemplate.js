@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledTableCell, StyledTableRow } from './styles';
 import { Table, TableBody, TableContainer, TableHead, TablePagination, Button } from '@mui/material';
 import { Radio, RadioGroup, FormControl, FormControlLabel } from '@mui/material';
@@ -36,34 +36,47 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
         return `${year}-${month}-${day}`;
     };
     const date = getCurrentDate()
+
+    const [obj2, setObj2] = useState({});
+
     
     const obj = {}
 
     const handleStatusChange = (studentId, newStatus) => {
-        console.log('me clicked',obj)
+        console.log('me clicked',studentId," : ",newStatus)
         obj[studentId?.id] = newStatus
-        setObj1(obj)
-        console.log(obj1)
+        
+        
+        setObj2(prevState => ({
+            ...prevState,
+            [studentId.id]: newStatus
+        }));
+
+        console.log("this",obj2)
+        console.log()
     };
 
     const uploadAttendance = () => {
-        // setObj1(obj)
-        console.log("he",obj1)
-        console.log(obj)
-        try{
-            for (const key in obj) {
-                console.log(`Key: ${key}, Value: ${obj[key]}`);
-                const fields = { subName: subjectID, status: obj[key], date }
+        
+        if (Object.keys(obj2).length === 0) {
+            setMessage("Select anyone option first")
+            setShowPopup(true)
+        }else {
+            for (const key in obj2) {
+                console.log(`Key: ${key}, Value: ${obj2[key]}`);
+                const fields = { subName: subjectID, status: obj2[key], date }
                 dispatch(updateStudentFields(key, fields, "StudentAttendance"))
                 console.log("Done")
             }
             setMessage("Done Successfully")
             setShowPopup(true)
-        }catch(e){
-            setMessage("Something Wrong")
-            setShowPopup(true)
         }
     }
+
+    useEffect(() => {
+        // This effect runs after every render, including when obj2 is updated
+        console.log("kewa",obj2);
+    }, [obj2]); // Run this effect whenever obj2 changes
 
 
     return (
