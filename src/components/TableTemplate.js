@@ -57,7 +57,7 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
     };
 
     const uploadAttendance = () => {
-        
+        console.log(obj2)
         if (Object.keys(obj2).length === 0) {
             setMessage("Select anyone option first")
             setShowPopup(true)
