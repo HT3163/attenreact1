@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     CssBaseline,
     Box,
@@ -15,14 +15,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Logout from '../Logout'
 import AccountMenu from '../../components/AccountMenu';
 import { AppBar, Drawer } from '../../components/styles';
-import StudentAttendance from '../admin/studentRelated/StudentAttendance';
 
 import TeacherClassDetails from './TeacherClassDetails';
-import TeacherComplain from './TeacherComplain';
 import TeacherHomePage from './TeacherHomePage';
 import TeacherProfile from './TeacherProfile';
 import TeacherViewStudent from './TeacherViewStudent';
-import StudentExamMarks from '../admin/studentRelated/StudentExamMarks';
 
 const TeacherDashboard = () => {
     const [open, setOpen] = useState(true);
@@ -30,13 +27,14 @@ const TeacherDashboard = () => {
         setOpen(!open);
     };
 
+
     return (
         <>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar open={open} position='absolute'>
                     <Toolbar sx={{ pr: '24px' }}>
-                        <IconButton
+                        <IconButton id='thisisme'
                             edge="start"
                             color="inherit"
                             aria-label="open drawer"
@@ -79,13 +77,8 @@ const TeacherDashboard = () => {
                         <Route path="/Teacher/dashboard" element={<TeacherHomePage />} />
                         <Route path="/Teacher/profile" element={<TeacherProfile />} />
 
-                        {/* <Route path="/Teacher/complain" element={<TeacherComplain />} /> */}
-
                         <Route path="/Teacher/class" element={<TeacherClassDetails />} />
                         <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
-
-                        {/* <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} /> */}
-                        {/* <Route path="/Teacher/class/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} /> */}
 
                         <Route path="/logout" element={<Logout />} />
                     </Routes>

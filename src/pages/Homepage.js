@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Grid, Box, Button } from '@mui/material';
+import { Container, Grid, Box } from '@mui/material';
 import styled from 'styled-components';
 import Students from "../assets/students.svg";
-import { LightPurpleButton } from '../components/buttonStyles';
+import imgg from "../assets/img10.png"
 
 const Homepage = () => {
     return (
@@ -11,11 +11,10 @@ const Homepage = () => {
         <StyledContainer>
             <Grid container spacing={0}>
                 <Grid item xs={12} md={6}>
-                    <img src={Students} alt="students" style={{ width: '100%' }} />
+                    <img src={imgg} alt="students" style={{ width: '100%' }} />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <StyledPaper elevation={3}>
-                    <h1 id='hamza'>Hello World</h1>
                         <StyledTitle id='welcomeid'>
                             Welcome to
                             <br />
@@ -30,22 +29,8 @@ const Homepage = () => {
                         </StyledText>
                         <StyledBox>
 
-                            {/* <StyledLink to="/choose" id='btn1'>
-                                <LightPurpleButton variant="contained" fullWidth>
-                                    Login
-                                </LightPurpleButton>
-                            </StyledLink> */}
-
                             <a href='/choose' id='btn1' style={{border:'1px solid',padding:'5px',borderRadius:'2px'}}>Login Page</a>
 
-
-                            <StyledLink to="/chooseasguest">
-                                <Button variant="outlined" fullWidth
-                                    sx={{ mt: 2, mb: 3, color: "#7f56da", borderColor: "#7f56da" }}
-                                >
-                                    Login as Guest
-                                </Button>
-                            </StyledLink>
                             <StyledText>
                                 Don't have an account?{' '}
                                 <Link to="/Adminregister" style={{color:"#550080"}}>
@@ -101,6 +86,3 @@ const StyledText = styled.p`
   line-height: normal;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;

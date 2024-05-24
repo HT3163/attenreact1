@@ -139,9 +139,15 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                                         {/* {console.log(row)} */}
 
                                         
-                                        {currentUser?.role === 'Teacher' ? <div>
-                                            <input name={row?.rollNum} type='radio' value="Present" onClick={() => handleStatusChange(row, 'Present')}/>Present
-                                            <input name={row?.rollNum} type='radio'value="Absent" onClick={() => handleStatusChange(row, 'Absent')}/>Absent
+                                        {currentUser?.role === 'Teacher' ? <div className='radiog'  style={{display:"flex"}}>
+                                            <div style={{margin:"1px"}}>
+                                                <input name={row?.rollNum} type='radio' value="Present" onClick={() => handleStatusChange(row, 'Present')}/>
+                                                <label>Present</label>
+                                            </div>
+                                            <div style={{margin:"1px"}}>
+                                                <input className='radioabs' style={{marginLeft: "5px"}} name={row?.rollNum} type='radio'value="Absent" onClick={() => handleStatusChange(row, 'Absent')}/>
+                                                <label>Absent</label>
+                                            </div>
                                             </div> : ""
                                         }
                                       
