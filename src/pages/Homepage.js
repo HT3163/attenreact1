@@ -29,7 +29,7 @@ const Homepage = () => {
                         </StyledText>
                         <StyledBox>
 
-                            <a href='/choose' id='btn1' style={{border:'1px solid',padding:'5px',borderRadius:'2px'}}>Login Page</a>
+                            <a className='main-btn' href='/choose' id='btn1' style={{border:'1px solid',padding:'5px',borderRadius:'2px'}}>Login Page</a>
 
                             <StyledText>
                                 Don't have an account?{' '}

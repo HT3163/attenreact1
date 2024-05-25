@@ -204,22 +204,10 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                 </Table>
             </TableContainer>
 
-
-            {/* {
-                currentUser?.role === "Teacher" ? <>
-                    <div style={{ display: 'flex', justifyContent: 'center',margin:"10px"}}>
-                        <Button id='btnclick' onClick={()=> uploadAttendance()} variant="contained" color="primary">
-                            Submit Attendance
-                        </Button>
-                        <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
-                    </div>
-                </> : ""
-            } */}
-
             {
                 currentUser?.role === "Teacher" ? <>
                     <div style={{ display: 'flex', justifyContent: 'center',margin:"10px"}}>
-                        <button id='btnclick' onClick={()=> uploadAttendance()}>
+                        <button className='main-btn' id='btnclick' onClick={()=> uploadAttendance()}>
                             Submit Attendance
                         </button>
                         <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
