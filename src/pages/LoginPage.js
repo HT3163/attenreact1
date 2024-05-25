@@ -36,9 +36,9 @@ const LoginPage = ({ role }) => {
         event.preventDefault();
 
         if (role === "Student") {
-            const rollNum = event.target.rollNumber.value;
-            const studentName = event.target.studentName.value;
-            const password = event.target.password.value;
+            const rollNum = event.target.rollNumber.value.trim();
+            const studentName = event.target.studentName.value.trim();
+            const password = event.target.password.value.trim();
 
             if (!rollNum || !studentName || !password) {
                 if (!rollNum) setRollNumberError(true);
@@ -52,7 +52,7 @@ const LoginPage = ({ role }) => {
         }
 
         else {
-            const email = event.target.email.value;
+            const email = event.target.email.value.trim();
             const password = event.target.password.value;
 
             if (!email || !password) {
