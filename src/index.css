@@ -158,8 +158,8 @@ body{
   border-radius: 0.2rem;
 }
 
-.main-btn:hover{
+/* .main-btn:hover{
   transition: all .5s;
   transform: rotate(-3deg) scale(1.1);
   box-shadow: 0px 3px 5px rgba(0,0,0,.4);
-}
+} */
