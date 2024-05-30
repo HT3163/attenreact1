@@ -9,8 +9,23 @@ export const FullAtten = () => {
     const { currentUser } = useSelector(state => state.user)
     console.log(currentUser)
 
+    // useEffect(() => {
+    //     dispatch(getAllStudents(currentUser._id));
+    // }, [dispatch,currentUser._id]);
+
     useEffect(() => {
         dispatch(getAllStudents(currentUser._id));
+        const pollData = async () => {
+          try {
+            console.log('hi')
+            dispatch(getAllStudents(currentUser._id));
+          } catch (error) {
+            console.error('Error polling data from server:', error);
+          }
+        };
+    
+        const interval = setInterval(pollData, 2000); // Poll every 5 seconds
+        return () => clearInterval(interval); // Cleanup interval on component unmount
     }, [dispatch,currentUser._id]);
 
 
