@@ -47,6 +47,15 @@ const SideBar = () => {
                     </ListItemIcon>
                     <ListItemText primary="Students" />
                 </ListItemButton>
+
+                <ListItemButton component={Link} to="/Admin/fullAtten">
+                    <ListItemIcon>
+                        <PersonOutlineIcon color={location.pathname.startsWith("/Admin/fullAtten") ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Full Atten" />
+                </ListItemButton>
+
+
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
             <React.Fragment>

@@ -37,6 +37,7 @@ import AddClass from './classRelated/AddClass';
 import ClassDetails from './classRelated/ClassDetails';
 import ShowClasses from './classRelated/ShowClasses';
 import AccountMenu from '../../components/AccountMenu';
+import { FullAtten } from './FullAtten';
 
 const AdminDashboard = () => {
     const [open, setOpen] = useState(false);
@@ -74,6 +75,7 @@ const AdminDashboard = () => {
                         <AccountMenu />
                     </Toolbar>
                 </AppBar>
+
                 <Drawer variant="permanent" open={open} sx={open ? styles.drawerStyled : styles.hideDrawer}>
                     <Toolbar sx={styles.toolBarStyled}>
                         <IconButton onClick={toggleDrawer}>
@@ -85,6 +87,7 @@ const AdminDashboard = () => {
                         <SideBar />
                     </List>
                 </Drawer>
+
                 <Box component="main" sx={styles.boxStyled}>
                     <Toolbar />
                     <Routes>
@@ -114,6 +117,7 @@ const AdminDashboard = () => {
                         <Route path="/Admin/students" element={<ShowStudents />} />
                         <Route path="/Admin/students/student/:id" element={<ViewStudent />} />
                         <Route path="/Admin/students/student/attendance/:id" element={<StudentAttendance situation="Student" />} />
+                        <Route path="/Admin/fullAtten" element={<FullAtten/>} />
 
                         {/* Teacher */}
                         <Route path="/Admin/teachers" element={<ShowTeachers />} />
