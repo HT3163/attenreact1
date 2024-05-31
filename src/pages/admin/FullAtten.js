@@ -10,8 +10,6 @@ export const FullAtten = () => {
     const { currentUser } = useSelector(state => state.user)
     const { teacherDetails} = useSelector((state) => state.teacher);
     const { subjectsList} = useSelector((state) => state.sclass);
-    
-    console.log(subjectsList)
 
     useEffect(() => {
         dispatch(getAllStudents(currentUser._id));
