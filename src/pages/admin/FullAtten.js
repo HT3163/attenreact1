@@ -8,7 +8,6 @@ export const FullAtten = () => {
 
     const {studentsList} = useSelector((state) => state.student);
     const { currentUser } = useSelector(state => state.user)
-    const { teacherDetails} = useSelector((state) => state.teacher);
     const { subjectsList} = useSelector((state) => state.sclass);
 
     useEffect(() => {
