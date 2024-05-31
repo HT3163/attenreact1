@@ -5,9 +5,12 @@ import { deleteUser, updateUser } from '../../redux/userRelated/userHandle';
 import { useNavigate } from 'react-router-dom'
 import { authLogout } from '../../redux/userRelated/userSlice';
 import { Button, Collapse } from '@mui/material';
+import Popup from './../../components/Popup';
 
 
 const AdminProfile = () => {
+    const [showPopup, setShowPopup] = useState(false);
+    const [message, setMessage] = useState("");
     
     const [showTab, setShowTab] = useState(false);
     const buttonText = showTab ? 'Cancel' : 'Edit profile';
@@ -30,6 +33,8 @@ const AdminProfile = () => {
     const submitHandler = (event) => {
         event.preventDefault()
         dispatch(updateUser(fields, currentUser._id, address))
+        setMessage("Done Successfully")
+        setShowPopup(true)
     }
 
     const deleteHandler = () => {
@@ -86,6 +91,7 @@ const AdminProfile = () => {
 
                         <button className="registerButton" type="submit" >Update</button>
                     </form>
+                    <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
                 </div>
             </Collapse>
         </div>

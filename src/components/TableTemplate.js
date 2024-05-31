@@ -1,30 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { StyledTableCell, StyledTableRow } from './styles';
-import { Table, TableBody, TableContainer, TableHead, TablePagination, Button } from '@mui/material';
-import { Radio, RadioGroup, FormControl, FormControlLabel } from '@mui/material';
+import { Table, TableBody, TableContainer, TableHead} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateStudentFields } from '../redux/studentRelated/studentHandle';
 import Popup from './Popup';
 
 
 const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [selectedValue, setSelectedValue] = useState(''); // State to keep track of selected value
 
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
-    const [obj1,setObj1] = useState({})
-
-    
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value); // Update state with selected value
-    };
-
 
     const dispatch = useDispatch();
     const { currentUser } = useSelector((state) => state.user);
-    const classID = currentUser.teachSclass?._id
     const subjectID = currentUser.teachSubject?._id
 
     // Create a new Date object for today
@@ -39,34 +27,24 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
 
     const [obj2, setObj2] = useState({});
 
-    
-    const obj = {}
-
     const handleStatusChange = (studentId, newStatus) => {
         console.log('me clicked',studentId," : ",newStatus)
-        obj[studentId?.id] = newStatus
-        
         
         setObj2(prevState => ({
             ...prevState,
             [studentId.id]: newStatus
         }));
 
-        console.log("this",obj2)
-        console.log()
     };
 
     const uploadAttendance = () => {
-        console.log(obj2)
         if (Object.keys(obj2).length === 0) {
             setMessage("Select anyone option first")
             setShowPopup(true)
         }else {
             for (const key in obj2) {
-                console.log(`Key: ${key}, Value: ${obj2[key]}`);
                 const fields = { subName: subjectID, status: obj2[key], date }
                 dispatch(updateStudentFields(key, fields, "StudentAttendance"))
-                console.log("Done")
             }
             setMessage("Done Successfully")
             setShowPopup(true)
@@ -75,7 +53,6 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
 
     useEffect(() => {
         // This effect runs after every render, including when obj2 is updated
-        console.log("kewa",obj2);
     }, [obj2]); // Run this effect whenever obj2 changes
 
 

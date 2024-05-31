@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStudents } from '../../redux/studentRelated/studentHandle';
+import { getSubjectList } from '../../redux/sclassRelated/sclassHandle';
 
 export const FullAtten = () => {
     const dispatch = useDispatch()
 
     const {studentsList} = useSelector((state) => state.student);
     const { currentUser } = useSelector(state => state.user)
-    console.log(currentUser)
-
-    // useEffect(() => {
-    //     dispatch(getAllStudents(currentUser._id));
-    // }, [dispatch,currentUser._id]);
+    const { teacherDetails} = useSelector((state) => state.teacher);
+    const { subjectsList} = useSelector((state) => state.sclass);
+    
+    console.log(subjectsList)
 
     useEffect(() => {
         dispatch(getAllStudents(currentUser._id));
+        dispatch(getSubjectList(currentUser._id, "AllSubjects"));
+        
         const pollData = async () => {
           try {
-            console.log('hi')
             dispatch(getAllStudents(currentUser._id));
           } catch (error) {
             console.error('Error polling data from server:', error);
           }
         };
     
-        const interval = setInterval(pollData, 2000); // Poll every 5 seconds
+        const interval = setInterval(pollData, 2000); // Poll every 2 seconds
         return () => clearInterval(interval); // Cleanup interval on component unmount
     }, [dispatch,currentUser._id]);
 
@@ -61,7 +62,14 @@ export const FullAtten = () => {
                                             <tr key={att._id}>
                                                 <td className='fullatten1'>{new Date(att.date).toLocaleDateString()}</td>
                                                 <td className='fullatten1'>{att.status === "Present"? <span style={{color:'green'}}>Present</span> : <span style={{color:'red'}}>Absent</span>}</td>
-                                                <td className='fullatten1'>{att.subName}</td>
+                                                <td className='fullatten1'>
+                                                    {
+                                                        subjectsList.map((item, index) => (
+                                                           att.subName === item._id ? `${item.subName}` : ""
+                                                        
+                                                        ))
+                                                    }
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
