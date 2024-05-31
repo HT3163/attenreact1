@@ -12,8 +12,10 @@ const TeacherClassDetails = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { sclassStudents, loading, error, getresponse } = useSelector((state) => state.sclass);
+    console.log(sclassStudents,getresponse)
 
     const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser)
     const classID = currentUser.teachSclass?._id
     const subjectID = currentUser.teachSubject?._id
 

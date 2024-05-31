@@ -13,6 +13,8 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
 
     const dispatch = useDispatch();
     const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser)
+    
     const subjectID = currentUser.teachSubject?._id
 
     // Create a new Date object for today
@@ -52,6 +54,7 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
     }
 
     useEffect(() => {
+        
         // This effect runs after every render, including when obj2 is updated
     }, [obj2]); // Run this effect whenever obj2 changes
 

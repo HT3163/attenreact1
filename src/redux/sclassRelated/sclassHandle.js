@@ -29,9 +29,10 @@ export const getAllSclasses = (id, address) => async (dispatch) => {
 
 export const getClassStudents = (id) => async (dispatch) => {
     dispatch(getRequest());
-
+    console.log(id)
     try {
         const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/Sclass/Students/${id}`);
+        console.log(result)
         if (result.data.message) {
             dispatch(getFailedTwo(result.data.message));
         } else {
