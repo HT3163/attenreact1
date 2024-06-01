@@ -22,7 +22,7 @@ import TeacherProfile from './TeacherProfile';
 import TeacherViewStudent from './TeacherViewStudent';
 
 const TeacherDashboard = () => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
