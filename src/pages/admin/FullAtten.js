@@ -13,8 +13,10 @@ import {
   TableRow,
   Paper,
   Box,
-  Chip
+  Chip,
+  Button
 } from '@mui/material';
+import * as XLSX from 'xlsx';
 
 export const FullAtten = () => {
   const dispatch = useDispatch();
@@ -39,12 +41,45 @@ export const FullAtten = () => {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [dispatch, currentUser._id]);
 
+  const handleDownload = () => {
+    const attendanceData = studentsList.map((student) => {
+      const attendanceRecords = student.attendance.map((att) => ({
+        Date: new Date(att.date).toLocaleDateString(),
+        Status: att.status,
+        Subject: subjectsList.find((item) => item._id === att.subName)?.subName || ''
+      })).reduce((acc, att) => {
+        acc.dates.push(att.Date);
+        acc.statuses.push(att.Status);
+        acc.subjects.push(att.Subject);
+        return acc;
+      }, { dates: [], statuses: [], subjects: [] });
+
+      return {
+        Name: student.name,
+        RollNumber: student.rollNum,
+        Class: student.sclassName.sclassName,
+        Dates: attendanceRecords.dates.join(', '),
+        Statuses: attendanceRecords.statuses.join(', '),
+        Subjects: attendanceRecords.subjects.join(', ')
+      };
+    });
+
+    const ws = XLSX.utils.json_to_sheet(attendanceData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Attendance');
+
+    XLSX.writeFile(wb, 'Attendance.xlsx');
+  };
+
   return (
     <Container maxWidth="lg">
       <Box my={4}>
         <Typography variant="h4" component="h2" gutterBottom>
           Student Records
         </Typography>
+        <Button variant="contained" color="primary" onClick={handleDownload}>
+          Download Attendance
+        </Button>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
